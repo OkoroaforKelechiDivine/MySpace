@@ -1,8 +1,8 @@
-package com.example.practice.dto.admin;
+package com.example.practice.model.admin;
 
 //import com.example.practice.dto.BaseUser;
-import com.example.practice.dto.User.AppUserType;
-import com.example.practice.dto.UserProfile.AppUserProfile;
+import com.example.practice.model.User.AppUserType;
+import com.example.practice.model.UserProfile.AppUserProfile;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

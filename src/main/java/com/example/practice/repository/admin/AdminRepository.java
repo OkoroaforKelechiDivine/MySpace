@@ -1,7 +1,7 @@
 package com.example.practice.repository.admin;
 
-import com.example.practice.dto.UserProfile.AppUserProfile;
-import com.example.practice.dto.admin.Admin;
+import com.example.practice.model.UserProfile.AppUserProfile;
+import com.example.practice.model.admin.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package com.example.practice.repository.user;
 
-import com.example.practice.dto.User.AppUser;
-import com.example.practice.dto.UserProfile.AppUserProfile;
+import com.example.practice.model.User.AppUser;
+import com.example.practice.model.UserProfile.AppUserProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

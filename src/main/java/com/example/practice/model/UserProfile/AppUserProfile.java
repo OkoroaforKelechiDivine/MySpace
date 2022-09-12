@@ -1,7 +1,6 @@
-package com.example.practice.dto.UserProfile;
+package com.example.practice.model.UserProfile;
 
-import com.example.practice.dto.User.AppUser;
-import com.example.practice.dto.User.AppUserType;
+import com.example.practice.model.User.AppUserType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
