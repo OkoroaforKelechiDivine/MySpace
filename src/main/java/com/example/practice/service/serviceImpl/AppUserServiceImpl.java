@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +45,6 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     public void registerAppUser(AppUserProfile appUserProfile) throws AppException {
-
         if(appUserProfile.getPassword().length() < 6){
             throw new AppException("Password must have at least 6 characters.");
         }
@@ -54,9 +54,8 @@ public class AppUserServiceImpl implements AppUserService {
         appUserProfile.setUserType(AppUserType.USER);
         appUserProfile.setPassword(encryptPassword(appUserProfile.getPassword()));
         appUserProfileService.createUserProfile(appUserProfile);
-
         appUser.setUser(appUserProfile);
-        appUser.setCreatedDate(LocalDateTime.now());
+        appUser.setCreatedDate(LocalDate.now());
         appUser.setIsActive(true);
         appUser.setDateOfBirth("");
         appUser.setGender(null);
@@ -66,7 +65,6 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public void verifyEmailToken(String verificationToken, String url) throws AppException {
         AppUser byVerificationToken = appUserRepository.findByVerificationToken(verificationToken);
-
         if (byVerificationToken == null) {
             throw new AppException("User token should not be empty.");
         }
@@ -82,7 +80,6 @@ public class AppUserServiceImpl implements AppUserService {
     public void resetPassword(String oldPassword, String newPassword) throws AppException {
         AppUserProfile appUserProfileVerificationEmail = appUserProfileRepository.findByEmail(oldPassword);
         AppUser userVerificationEmail = appUserRepository.findByUser(appUserProfileVerificationEmail);
-
         if (userVerificationEmail == null) {
             throw new AppException("User id can't be null.");
         } else {

@@ -49,10 +49,11 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .build()
                     .verify(token.replace(TOKEN_PREFIX, ""))
                     .getSubject();
+            System.out.println(token);
             if (user != null) {
                 return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
             }
-            throw new AppException("Visitor does not exist.");
+            throw new AppException("User does not exist.");
         }
         else {
             throw new AppException("User does not exist.");

@@ -93,20 +93,20 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             responseDto.setToken(token);
         }
         else {
-            AppUser visitor = userRepository.findByUser(user);
+            AppUser appUser = userRepository.findByUser(user);
             responseDto = new ResponseDto();
             responseDto.setEmail(user.getEmail());
             responseDto.setCreatedDate(LocalDateTime.now().toString());
             responseDto.setFirstName(user.getFirstName());
-            responseDto.setId(visitor.getId());
-            responseDto.setToken(visitor.getVerificationToken());
+            responseDto.setId(appUser.getId());
+            responseDto.setToken(appUser.getVerificationToken());
             responseDto.setModifiedDate(LocalDateTime.now().toString());
             responseDto.setLastName(user.getLastName());
-            responseDto.setIsActive(visitor.getIsActive());
+            responseDto.setIsActive(appUser.getIsActive());
             responseDto.setIsVerified(user.getIsVerified());
             responseDto.setModifiedDate(LocalDateTime.now().toString());
-            responseDto.setPhoneNumber(visitor.getPhoneNumber());
-            responseDto.setSex(visitor.getGender());
+            responseDto.setPhoneNumber(appUser.getPhoneNumber());
+            responseDto.setSex(appUser.getGender());
             responseDto.setToken(token);
         }
         response.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");

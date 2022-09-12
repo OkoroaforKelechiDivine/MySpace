@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 public class AppUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
 
     @OneToOne
@@ -28,7 +29,7 @@ public class AppUser {
     private String verificationToken;
 
     @NonNull
-    private LocalDateTime createdDate;
+    private LocalDate createdDate;
 
     private Gender gender;
 
