@@ -11,10 +11,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-//import com.fasterxml.jackson.core.JsonProcessingException;
 
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static javax.swing.UIManager.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -33,7 +31,7 @@ public class AppUserControllerTest {
 
     private RegisterDto registerDto;
 
-//    String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwODA4NzY0MzM2MiIsImV4cCI6MTY0NjQxNjMzN30.WQJFqN_bR1U640y0OX54hajaGL6bAO0XBc70FDNmYgquAr29l5eZFLKMPO0mKbQZsdkbd4Rc55L2fduQNETsJQ";
+    String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlemVraWVsYWtpbnR1bmRlMUBnbWFpbC5jb20iLCJleHAiOjE2NjM4MzM3Nzl9.bgUeLqfKgMeaO_--tM9quK5wytj6tZSu52D4mTCVrdP7qP3U62exbSLY5hGa3C1MCjJoKKo1TolEGbCd_Qx6DQ";
 
     @BeforeEach
     public void startUpMethod(){
@@ -48,7 +46,7 @@ public class AppUserControllerTest {
         registerDto.setPassword("I love Jesus");
         registerDto.setFirstName("benson");
         registerDto.setLastName("idahosa");
-        registerDto.setEmail("ezekielakintunde11@gmail.com");
+        registerDto.setEmail("ezekielakintunde1@gmail.com");
 
         this.mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -58,32 +56,41 @@ public class AppUserControllerTest {
                 .andReturn();
     }
 
+    @Test
+    @DisplayName("Create bad account")
+    public void test_createUserAccountWithBadCredentials() throws Exception {
+        registerDto.setPassword("email");
+        registerDto.setFirstName("");
+        registerDto.setLastName("");
+        registerDto.setEmail("ezekielakintunde12@gmail.com");
+
+        this.mockMvc.perform(post("/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(registerDto)))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andReturn();
+    }
+
+    @Test
+    public void test_userLogin() throws Exception {
+        loginDto.setPassword("I love Jesus");
+        loginDto.setEmail("ezekielakintunde1@gmail.com");
+        this.mockMvc.perform(post("/user/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(loginDto)))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andReturn();
+    }
+
 //    @Test
-//    @DisplayName("Create bad account")
-//    public void test_createVisitorAccountWithBadCredentials() throws Exception {
-//        registerDto.setPassword("email");
-//        registerDto.setFirstName("");
-//        registerDto.setLastName("");
-//        registerDto.setEmail("ezekielakintunde12@gmail.com");
-//
-//        this.mockMvc.perform(post("/users")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(objectMapper.writeValueAsString(registerDto)))
-//                .andExpect(status().isOk())
+//    @DisplayName("Verify user account")
+//    public void test_verifyUserAccount(){
+//        this.mockMvc.perform(get("/verify/kelechi@gmail.com")
+//                        .header("Authorization", token))
 //                .andDo(print())
-//                .andReturn();
-//    }
-//
-//    @Test
-//    public void test_visitorCanLogin() throws Exception {
-//        loginDto.setPassword("email");
-//        loginDto.setEmail("ezekielakintunde18@gmail.com");
-//
-//        this.mockMvc.perform(post("/user/login")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(objectMapper.writeValueAsString(loginDto)))
 //                .andExpect(status().isOk())
-//                .andDo(print())
 //                .andReturn();
 //    }
 //
@@ -102,13 +109,13 @@ public class AppUserControllerTest {
 //
 //    @Test
 //    public void test_findVisitorById() throws Exception {
-//
 //        this.mockMvc.perform(get("/users/621519a468f0a2213ffec4a4")
 //                        .header("Authorization", token))
 //                .andDo(print())
 //                .andExpect(status().isOk())
 //                .andReturn();
 //    }
+
 //
 //    @Test
 //    public void test_findVisitorByIdThatDoesExist() throws Exception {
