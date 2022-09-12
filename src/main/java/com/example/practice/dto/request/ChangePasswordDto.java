@@ -13,5 +13,5 @@ public class ChangePasswordDto {
     private String newPassword;
 
     @NotNull
-    private String appUserId;
+    private int appUserId;
 }

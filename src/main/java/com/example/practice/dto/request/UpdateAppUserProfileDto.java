@@ -11,7 +11,6 @@ import lombok.NonNull;
 @NoArgsConstructor
 public class UpdateAppUserProfileDto {
 
-    @NonNull
     private int id;
 
     private String firstName;

@@ -1,4 +1,4 @@
-package com.example.practice.service.User;
+package com.example.practice.service;
 
 import com.example.practice.dto.request.UpdateAppUserDto;
 import com.example.practice.model.User.AppUser;

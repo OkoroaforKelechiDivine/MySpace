@@ -11,7 +11,7 @@ import com.example.practice.model.UserProfile.AppUserProfile;
 import com.example.practice.exception.AppException;
 import com.example.practice.repository.user.AppUserRepository;
 import com.example.practice.repository.userProfile.AppUserProfileRepository;
-import com.example.practice.service.User.AppUserService;
+import com.example.practice.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +20,9 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+
+import static com.example.practice.security.SecurityConstants.EXPIRATION_TIME;
+import static com.example.practice.security.SecurityConstants.SECRET;
 
 @Service
 public class AppUserServiceImpl implements AppUserService {
@@ -35,7 +38,7 @@ public class AppUserServiceImpl implements AppUserService {
     @Autowired
     AppUserRepository appUserRepository;
 
-    public Boolean appUserDoesNotExist(Integer id) {
+    public Boolean appUserDoesNotExist(int id) {
         return !appUserRepository.existsById(id);
     }
 
@@ -50,7 +53,7 @@ public class AppUserServiceImpl implements AppUserService {
         appUserProfile.setIsVerified(false);
         appUserProfile.setUserType(AppUserType.USER);
         appUserProfile.setPassword(encryptPassword(appUserProfile.getPassword()));
-        appUserProfileService.createVisitorProfile(appUserProfile);
+        appUserProfileService.createUserProfile(appUserProfile);
 
         appUser.setUser(appUserProfile);
         appUser.setCreatedDate(LocalDateTime.now());
