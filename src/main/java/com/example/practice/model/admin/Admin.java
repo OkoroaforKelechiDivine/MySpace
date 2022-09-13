@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class Admin {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
 
     private LocalDateTime createdDate;
@@ -39,5 +39,4 @@ public class Admin {
 
     @OneToOne
     private AppUserProfile user;
-
 }

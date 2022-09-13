@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
-    default void updateAdmin(Admin varAdmin) {
-        varAdmin.setCreatedDate(LocalDateTime.now());
-        save(varAdmin);
+    default void updateAdmin(Admin admin) {
+        admin.setCreatedDate(LocalDateTime.now());
+        save(admin);
     }
 
     boolean existsByEmail(String email);

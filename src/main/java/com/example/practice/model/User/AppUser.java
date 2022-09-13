@@ -40,5 +40,4 @@ public class AppUser {
 
     @NonNull
     private LocalDateTime modifiedDate;
-
 }

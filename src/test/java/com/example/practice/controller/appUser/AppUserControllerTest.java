@@ -59,7 +59,7 @@ public class AppUserControllerTest {
     @Test
     @DisplayName("Create bad account")
     public void test_createUserAccountWithBadCredentials() throws Exception {
-        registerDto.setPassword("email");
+        registerDto.setPassword("emailmenowornever");
         registerDto.setFirstName("");
         registerDto.setLastName("");
         registerDto.setEmail("ezekielakintunde12@gmail.com");
